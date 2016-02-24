@@ -27,21 +27,23 @@ function getDataSourcesFromQuery(query: Druid.Query): string[] {
 }
 
 function basicLocator(host: string): Locator.PlywoodLocator {
-  var hostnamePort = host.split(':');
-  var hostname: string;
-  var port: number;
-  if (hostnamePort.length > 1) {
-    hostname = hostnamePort[0];
-    port = Number(hostnamePort[1]);
-  } else {
-    hostname = hostnamePort[0];
-    port = 8080;
+  // var hostnamePort = host.split(':');
+  // var hostname: string;
+  // var port: number;
+  // if (hostnamePort.length > 1) {
+  //   hostname = hostnamePort[0];
+  //   port = Number(hostnamePort[1]);
+  // } else {
+  //   hostname = hostnamePort[0];
+  //   port = 8080;
+  // }
+  if(host.indexOf(':') == -1) {
+    return () => {
+      return Q( host + ":8080" )
+    }
   }
   return () => {
-    return Q({
-      hostname: hostname,
-      port: port
-    })
+    return Q( host )
   }
 }
 
@@ -67,8 +69,8 @@ function requestAsPromise(param: request.Options): Q.Promise<RequestResponse> {
   return deferred.promise;
 }
 
-function locationToURL(location: Locator.Location): string {
-  return "http://" + location.hostname + ":" + (location.port || 8080) + "/druid/v2/";
+function locationToURL(location: string): string {
+  return host + "/druid/v2/";
 }
 
 function failIfNoDatasource(url: string, query: Druid.Query, timeout: number): Q.Promise<any> {
