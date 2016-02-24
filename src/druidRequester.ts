@@ -69,7 +69,7 @@ function requestAsPromise(param: request.Options): Q.Promise<RequestResponse> {
   return deferred.promise;
 }
 
-function locationToURL(location: string): string {
+function locationToURL(host: string): string {
   return host + "/druid/v2/";
 }
 
