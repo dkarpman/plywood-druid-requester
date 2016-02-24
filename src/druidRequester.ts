@@ -66,7 +66,6 @@ function requestAsPromise(param: request.Options): Q.Promise<RequestResponse> {
 }
 
 function locationToURL(host: string): string {
-  console.log("Using: ", host + "/druid/v2/");
   return host + "/druid/v2/";
 }
 
