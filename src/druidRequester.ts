@@ -9,7 +9,7 @@ import request = require('request');
 import Q = require('q');
 
 export interface DruidRequesterParameters {
-  locator?: Locator.PlywoodLocator;
+  locator?: Q.Promise<string>;
   host?: string;
   timeout: number;
 }
