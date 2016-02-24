@@ -26,7 +26,7 @@ function getDataSourcesFromQuery(query: Druid.Query): string[] {
   }
 }
 
-function basicLocator(host: string): string {
+function basicLocator(host: string): Q.Promise<string> {
   // var hostnamePort = host.split(':');
   // var hostname: string;
   // var port: number;
