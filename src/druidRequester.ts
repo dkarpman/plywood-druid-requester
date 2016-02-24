@@ -38,13 +38,9 @@ function basicLocator(host: string): Q.Promise<string> {
   //   port = 8080;
   // }
   if(host.indexOf(':') == -1) {
-    return () => {
-      return Q( host + ":8080" )
-    }
+    return Q( host + ":8080" )
   }
-  return () => {
-    return Q( host )
-  }
+  return Q( host )
 }
 
 interface RequestResponse {
@@ -121,7 +117,7 @@ export function druidRequesterFactory(parameters: DruidRequesterParameters): Req
     }
 
     var url: string;
-    return locator()
+    return locator
       .then((location) => {
         if (timeout != null) {
           query.context || (query.context = {});
